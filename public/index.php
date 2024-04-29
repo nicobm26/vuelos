@@ -16,6 +16,8 @@ $router = new Router();
 //Panel administracion
 $router->get("/", [VueloController::class, 'index']);
 $router->post("/", [VueloController::class, 'index']);
+
+$router->get("/consultarVuelos", [VueloController::class, 'consultarTodosVuelos']);
 //$router->get("/admin", [LoginController::class, 'contactanos']);
 
 // $router->post("/contactanos", [PaginasController::class, 'contactanos']);

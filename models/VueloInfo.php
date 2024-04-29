@@ -49,6 +49,28 @@ class VueloInfo extends ActiveRecord{
             ON vuelo.tarifaId = tarifa.id
         ";
     }
+
+    public function consultarPorFecha($fechaSalida){
+        return "
+        SELECT 
+        vuelo.id, aeropuerto.nombre AS \"aeropuertoOrigen\", aeropuerto2.nombre AS \"aeropuertoDestino\", 
+        tarifa.precio AS \"precio\", avion.capacidadPasajeros AS Capacidad_Pasajeros, horario.fecha AS FechaSalida,
+        horario.hora AS HoraSalida, horario2.fecha AS FechaLLegada, horario2.hora AS HoraLlegada from vuelo
+        JOIN avion 
+            ON vuelo.avionId = avion.id        
+        join aeropuerto 
+            on vuelo.aeropuertoOrigenId = aeropuerto.id
+        join aeropuerto as aeropuerto2
+            on	 vuelo.aeropuertoDestinoId = aeropuerto2.id
+        JOIN horario 
+            ON vuelo.fechaSalida = horario.id
+        JOIN horario AS horario2 
+            ON vuelo.fechaLlegada = horario2.id
+        JOIN tarifa 
+            ON vuelo.tarifaId = tarifa.id
+        WHERE  horario.fecha = '$fechaSalida'
+        ";
+    }
    
     // Mensajes de validacion para la creacion de una cuenta
 }
