@@ -29,7 +29,7 @@ class VueloInfo extends ActiveRecord{
     }
 
 
-    public function consultarVuelos(){
+    private function generarConsultaBase(){
         return "
         SELECT 
         vuelo.id, aeropuerto.nombre AS \"aeropuertoOrigen\", aeropuerto2.nombre AS \"aeropuertoDestino\", 
@@ -50,27 +50,19 @@ class VueloInfo extends ActiveRecord{
         ";
     }
 
-    public function consultarPorFecha($fechaSalida){
-        return "
-        SELECT 
-        vuelo.id, aeropuerto.nombre AS \"aeropuertoOrigen\", aeropuerto2.nombre AS \"aeropuertoDestino\", 
-        tarifa.precio AS \"precio\", avion.capacidadPasajeros AS Capacidad_Pasajeros, horario.fecha AS FechaSalida,
-        horario.hora AS HoraSalida, horario2.fecha AS FechaLLegada, horario2.hora AS HoraLlegada from vuelo
-        JOIN avion 
-            ON vuelo.avionId = avion.id        
-        join aeropuerto 
-            on vuelo.aeropuertoOrigenId = aeropuerto.id
-        join aeropuerto as aeropuerto2
-            on	 vuelo.aeropuertoDestinoId = aeropuerto2.id
-        JOIN horario 
-            ON vuelo.fechaSalida = horario.id
-        JOIN horario AS horario2 
-            ON vuelo.fechaLlegada = horario2.id
-        JOIN tarifa 
-            ON vuelo.tarifaId = tarifa.id
-        WHERE  horario.fecha = '$fechaSalida'
-        ";
+    public function consultarTodosVuelos() {
+        return $this->generarConsultaBase();
     }
-   
-    // Mensajes de validacion para la creacion de una cuenta
+
+    public function consultarPorFecha($fechaSalida) {
+        return $this->generarConsultaBase() . " WHERE horario.fecha = '$fechaSalida'";
+    }
+
+    public function consultarPorPrecio($precio) {
+        return $this->generarConsultaBase() . " WHERE tarifa.precio <= '$precio'";
+    }
+
+    public function consultarPorPrecioYFecha($precio, $fecha) {
+        return $this->generarConsultaBase() . " WHERE tarifa.precio <= '$precio' AND horario.fecha = '$fecha'";
+    }
 }
