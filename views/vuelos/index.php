@@ -16,19 +16,19 @@
     <?php
     if(!empty($vuelos)){
         for($i=0; $i<count($vuelos); $i++) { ?>    
-        <div class="info" id="infovuelo">
-            <div>
+        <div class="card" id="infovuelo">
+            <div class="card--card">
                 <p>Aeropuerto Origen:  <?php echo $vuelos[$i]->aeropuertoOrigen ?> </p>
                 <p>Aeropuerto Destino: <?php echo $vuelos[$i]->aeropuertoDestino ?> </p>
             </div>
-            <div>
+            <div class="card--card">
                 <p>Fecha Salida: <?php echo $vuelos[$i]->FechaSalida  . " " . $vuelos[$i]->HoraSalida?> </p>
                 <p>Fecha LLegada: <?php echo $vuelos[$i]->FechaLlegada  . " " . $vuelos[$i]->HoraLlegada?> </p>
             </div>
-            <div>
+            <div class="card--centrar">
                 <p>Precio: <?php echo $vuelos[$i]->precio ?> </p>
             </div>
-            <a href="/vuelo?id=<?php echo $vuelos[$i]->id ?>">Ver mas información</a>    
+            <a class="card--centrar" href="/vuelo?id=<?php echo $vuelos[$i]->id ?>">Ver mas información</a>    
         </div>   
         <?php } ?>
     <?php }else{ ?>
