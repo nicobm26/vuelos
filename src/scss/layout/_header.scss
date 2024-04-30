@@ -29,26 +29,3 @@
         gap: 0.4rem;
     }
 }
-
-.item__link{
-    text-decoration: none;
-    color: v.$negro;
-    font-weight: v.$bold;
-    &:hover{
-        color: darken( v.$blanco, 20% );
-        color: v.$blanco;
-        cursor: pointer;
-    }
-}
-
-.menu__inicio{
-    width: 55px;
-    height: 55px;
-}
-.menu__link{
-    text-decoration: none;
-}
-
-.menu__item{
-    flex: 1fr 1fr auto;
-}
