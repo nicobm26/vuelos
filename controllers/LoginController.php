@@ -27,10 +27,11 @@ class LoginController{
                         if(!isset($_SESSION)) {  
                             session_start();
                         }
-                        // $_SESSION['cedula'] = $usuario->cedula;
-                        // $_SESSION['fullname'] = $usuario->nombres . " " . $usuario->apellidos;
-                        // $_SESSION['correo'] = $usuario->correo;
-                        // $_SESSION['login'] = true;                        
+                        $_SESSION['identificacion'] = $usuario->identificacion;
+                        $_SESSION['nombre'] = $usuario->nombre;
+                        $_SESSION['email'] = $usuario->email;
+                        $_SESSION['id'] = $usuario->id;
+                        $_SESSION['login'] = true;                        
 
                         //Redireccionamiento   ///Re pensar, ya que nostros tenems            
                         header("Location: /");      
@@ -67,18 +68,21 @@ class LoginController{
                     $pasajero->hashPassword();
 
                      // Generar token unico
-                    $pasajero->crearToken();
-                                                                         
+                    // $pasajero->crearToken();
+                    
+                    //Confirmando de una vez porque esta fallando el envio
+                    $pasajero->confirmado=1;
+                                              
+                    $resultado = $pasajero->guardar();
                     //  debuguear($pasajero);
                     // Enviar Email
-                    $email = new Email($pasajero->email, $pasajero->nombre, $pasajero->token);                    
-                    $email->enviarConfirmacion();
+                    // $email = new Email($pasajero->email, $pasajero->nombre, $pasajero->token);                    
+                    // $email->enviarConfirmacion();                    
 
-                    $resultado = $pasajero->guardar();
-
-                    // if($resultado) {
-                    //     header('Location: /mensaje');
-                    // }                                         
+                    if($resultado) {
+                        header('Location: /');
+                        // header('Location: /mensaje');
+                    }                                         
                 }
             }                                
         }

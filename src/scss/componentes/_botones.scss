@@ -6,9 +6,12 @@
     width: 80%;
     margin: 0 auto;
     margin-bottom: 1rem;
+    border-radius: 2rem;
     color: v.$colorTexto;
     @include m.tablet {
         width: 80%;
+        width: auto;
+      
     }
 }
 

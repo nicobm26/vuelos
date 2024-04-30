@@ -36,7 +36,7 @@ class Pasajero extends ActiveRecord{
     // Mensajes de validacion para la creacion de una cuenta
     public function validarNuevaCuenta(){
 
-        if (!empty($this->identificacion) && !preg_match("/^[0-9]$/", $this->identificacion)) {
+        if (!empty($this->identificacion) && !preg_match("/^[0-9]+$/", $this->identificacion)) {
             self::$alertas['error'][] = 'El número de identificacion solo acepta numeros';
         }
 

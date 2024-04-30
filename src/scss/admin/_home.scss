@@ -3,13 +3,14 @@
 
 .opciones{
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
     margin-bottom: 2rem;
 
     @include m.tablet {
         flex-direction: row;
-        
+        gap: 3rem;
     }
 
     a{

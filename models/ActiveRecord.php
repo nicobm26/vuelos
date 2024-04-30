@@ -304,4 +304,12 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public static function totalReservas($idVuelo){
+        $query = "SELECT COUNT(*) as cantidad_reservas FROM " . static::$tabla . " WHERE vueloId = $idVuelo";
+        // debuguear($query);
+        $resultado = self::$db->query($query);
+        $resultado = $resultado->fetch_assoc();
+        return array_shift($resultado);
+    }
+
 }

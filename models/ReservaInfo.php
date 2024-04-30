@@ -4,7 +4,7 @@ namespace Model;
 
 class VueloInfo extends ActiveRecord{
      // Base de Datos
-    protected static $tabla = 'vuelo';
+    protected static $tabla = 'reserva';
     protected static $columnasDB = ['id','aeropuertoOrigen','aeropuertoDestino','precio','Capacidad_Pasajeros','FechaSalida','HoraSalida','FechaLlegada','HoraLlegada'];
  
     public $id;

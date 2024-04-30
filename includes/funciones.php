@@ -17,6 +17,6 @@ function s($html) : string {
 
 function isAuth(): void{
     if(!isset($_SESSION['login'])){
-        header('Location: /');
+        header('Location: /login');
     }
 }
